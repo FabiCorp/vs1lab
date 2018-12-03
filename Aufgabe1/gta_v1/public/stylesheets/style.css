@@ -6,6 +6,24 @@ body {
 a {
     color: #00B7FF;
 }
+header {
+  background-color: gray;
+  padding: 10px;
+}
+footer {
+  background-color: gray;
+  padding: 10px;
+}
+main {
+  display: flex;
+}
+
+.tagging {
+    width: 50%;
+}
+.discovery {
+  width: 50%;
+}
 
 header {
     padding: 1em;
