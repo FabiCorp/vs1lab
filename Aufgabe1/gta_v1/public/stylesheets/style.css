@@ -9,10 +9,12 @@ a {
 header {
   background-color: gray;
   padding: 10px;
+  color: white;
 }
 footer {
   background-color: gray;
   padding: 10px;
+  color: white;
 }
 main {
   display: flex;
