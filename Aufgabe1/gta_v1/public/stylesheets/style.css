@@ -107,3 +107,10 @@ footer {
     display: block;
     margin-bottom: 1em;
 }
+
+#results li {
+  background-color: #04B4AE;
+  padding: 1em;
+  margin: 0.5em;
+  color: white;
+}
