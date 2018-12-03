@@ -28,12 +28,25 @@
         <h2>Tagging</h2>
 
         <!-- ############### Aufgabe1a Form1 Start -->
-        <form id="tag-form" action="/tagging" method="post">Form1</form>
+        <form id="tag-form" action="/tagging" method="post">
+            <fieldset>
+                <legend>Enter a new Geo-Tag</legend>
+                <label for="latitude">Latitude</label>
+                <input type="text" id="latitude" class="d-block" required>
+                <label for="latitude">Longitude</label>
+                <input type="text" id="longitude" class="d-block" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" class="d-block" maxlength="10" required>
+                <label for="hashtag">Hashtag</label>
+                <input type="text" id="hashtag" class="d-block" pattern="[#].*">
+                <button>submit</button>
+            </fieldset>
+        </form>
         <!-- ############### Aufgabe1a Form1 Ende -->
 
     </section>
 
-    <section class="discovery col-6 flex-box">
+    <section class="discovery col-8 flex-box">
         <h2>Discovery</h2>
 
         <!-- ############### Aufgabe1a Form2 Start -->

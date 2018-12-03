@@ -9,12 +9,12 @@ a {
 
 header {
     padding: 1em;
-    background-color: gray;
+    background-color: darkslategray;
 }
 
 footer {
     padding: 1em;
-    background-color: gray;
+    background-color: darkslategray;
 }
 
 .row::after {
@@ -79,8 +79,13 @@ footer {
 
 .tagging {
     min-width: 350px;
+    margin-left: 2em;
 }
 
 .discovery {
 }
 
+.d-block {
+    display: block;
+    margin-bottom: 1em;
+}
