@@ -102,3 +102,9 @@ footer {
 .discovery {
 }
 
+#results li {
+  background-color: #04B4AE;
+  padding: 1em;
+  margin: 0.5em;
+  color: white;
+}
