@@ -7,6 +7,16 @@ a {
     color: #00B7FF;
 }
 
+header {
+    padding: 1em;
+    background-color: gray;
+}
+
+footer {
+    padding: 1em;
+    background-color: gray;
+}
+
 .row::after {
     content: "";
     clear: both;
