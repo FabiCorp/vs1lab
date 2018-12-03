@@ -50,7 +50,15 @@
         <h2>Discovery</h2>
 
         <!-- ############### Aufgabe1a Form2 Start -->
-        <form id="filter-form" action="/discovery" method="post">Form2</form>
+        <form id="filter-form" action="/discovery" method="post">
+            <fieldset>
+                <legend>Filter by Searchterm</legend>
+                <input type="search" id="search" name="search">
+                <button type="button" id="apply" onclick="">Apply</button>
+                <button type="button" id="remove" onclick="">Remove</button>
+            </fieldset>
+
+        </form>
         <!-- ############### Aufgabe1a Form2 Ende -->
 
         <div class="taglist">
