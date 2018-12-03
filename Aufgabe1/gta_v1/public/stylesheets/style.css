@@ -14,8 +14,7 @@ a {
 }
 
 .col-1 {
-    flex-basis: 8.33%;
-    max-width: 8.33%;
+    width: 8.33%;
 }
 
 .col-2 {
@@ -27,8 +26,7 @@ a {
 }
 
 .col-4 {
-    max-width: 33.33%;
-    flex-basis: 33.33%;
+    width: 33.33%;
 }
 
 .col-5 {
