@@ -47,8 +47,6 @@ app.set('view engine', 'ejs');
  * - Funktion zum Löschen eines Geo Tags.
  */
 
-// TODO: CODE ERGÄNZEN
-
 var geoArray = [];
 
 var searchRadius = (longitude, latitude, radius) => {
@@ -59,12 +57,12 @@ var seachText = (text) => {
 
 }
 
-var addGeoTag = () => {
+var addGeoTag = (geoTag) => {
 
 }
 
-var removeGeoTag = () => {
-  
+var removeGeoTag = (geoTag) => {
+
 }
 
 /**
