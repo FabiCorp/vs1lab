@@ -18,7 +18,7 @@ var app;
 app = express();
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 // Setze ejs als View Engine
@@ -29,14 +29,14 @@ app.set('view engine', 'ejs');
  * Teste das Ergebnis im Browser unter 'http://localhost:3000/'.
  */
 
-// TODO: CODE ERGÄNZEN
+ app.use(express.static('public'));
 
 /**
  * Konstruktor für GeoTag Objekte.
  * GeoTag Objekte sollen min. alle Felder des 'tag-form' Formulars aufnehmen.
  */
 
-// TODO: CODE ERGÄNZEN
+
 
 /**
  * Modul für 'In-Memory'-Speicherung von GeoTags mit folgenden Komponenten:
@@ -77,7 +77,9 @@ app.get('/', function(req, res) {
  * Die Objekte liegen in einem Standard Radius um die Koordinate (lat, lon).
  */
 
-// TODO: CODE ERGÄNZEN START
+ app.post('/tagging', function(req, res) {
+   console.log(req.body);
+ });
 
 /**
  * Route mit Pfad '/discovery' für HTTP 'POST' Requests.
@@ -91,7 +93,9 @@ app.get('/', function(req, res) {
  * Falls 'term' vorhanden ist, wird nach Suchwort gefiltert.
  */
 
-// TODO: CODE ERGÄNZEN
+ app.post('/discovery', function(req, res) {
+   console.log(req.body);
+ });
 
 /**
  * Setze Port und speichere in Express.
