@@ -49,6 +49,24 @@ app.set('view engine', 'ejs');
 
 // TODO: CODE ERGÄNZEN
 
+var geoArray = [];
+
+var searchRadius = (longitude, latitude, radius) => {
+
+}
+
+var seachText = (text) => {
+
+}
+
+var addGeoTag = () => {
+
+}
+
+var removeGeoTag = () => {
+  
+}
+
 /**
  * Route mit Pfad '/' für HTTP 'GET' Requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
