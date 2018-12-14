@@ -23,6 +23,10 @@ footer {
     margin-bottom: 1em;
 }
 
+.d-none {
+    display: none;
+}
+
 .results-list {
     padding: 0;
     margin: 0;
