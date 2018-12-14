@@ -32,13 +32,13 @@
             <fieldset>
                 <legend>Enter a new Geo-Tag</legend>
                 <label for="latitude">Latitude</label>
-                <input type="text" id="latitude" class="d-block" required>
+                <input type="text" id="latitude" placeholder="49.01379" class="d-block" required>
                 <label for="latitude">Longitude</label>
-                <input type="text" id="longitude" class="d-block" required>
+                <input type="text" id="longitude" placeholder="8.404435" class="d-block" required>
                 <label for="name">Name</label>
-                <input type="text" id="name" class="d-block" maxlength="10" required>
+                <input type="text" id="name" placeholder="Castle" class="d-block" maxlength="10" required>
                 <label for="hashtag">Hashtag</label>
-                <input type="text" id="hashtag" class="d-block" pattern="[#].*">
+                <input type="text" id="hashtag" placeholder="#sight" class="d-block" pattern="[#].*">
                 <button>submit</button>
             </fieldset>
         </form>
@@ -53,7 +53,7 @@
         <form id="filter-form" action="/discovery" method="post">
             <fieldset>
                 <legend>Filter by Searchterm</legend>
-                <input type="search" id="search" name="search">
+                <input type="search" placeholder="Castle" id="search" name="search">
                 <button type="button" id="apply" onclick="">Apply</button>
                 <button type="button" id="remove" onclick="">Remove</button>
             </fieldset>
