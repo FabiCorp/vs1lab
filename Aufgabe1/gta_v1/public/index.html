@@ -40,7 +40,7 @@
                 <input type="text" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
                 <label for="tag-hashtag">Hashtag</label>
                 <input type="text" id="tag-hashtag" placeholder="#sight" class="d-block" pattern="[#].*">
-                <button>submit</button>
+                <button id="tag-submit" type="submit">submit</button>
             </fieldset>
         </form>
         <!-- ############### Aufgabe1a Form1 Ende -->
@@ -50,17 +50,20 @@
     <section class="col-8">
         <div class="d-block">
             <h2>Discovery</h2>
+
             <!-- ############### Aufgabe1a Form2 Start -->
             <form id="filter-form" action="/discovery" method="post">
                 <fieldset>
                     <legend>Filter by Searchterm</legend>
-                    <input type="search" placeholder="Castle" id="search" name="search">
-                    <button type="button" id="apply" onclick="">Apply</button>
-                    <button type="button" id="remove" onclick="">Remove</button>
+                    <input type="search" placeholder="Castle" id="discovery-search" name="search">
+                    <input type="text" id="discovery-latitude" class="d-none">
+                    <input type="text" id="discovery-longitude" class="d-none">
+                    <button type="button" id="discovery-apply" onclick="">Apply</button>
+                    <button type="button" id="discovery-remove" onclick="">Remove</button>
                 </fieldset>
-
             </form>
             <!-- ############### Aufgabe1a Form2 Ende -->
+
             <div class="flex-grid">
                 <div class="col-4">
                     <ul id="results" class="results-list">
@@ -70,7 +73,7 @@
                 </div>
 
                 <div class="tagmap col-8">
-                    <img id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
+                    <img class="map" id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
                     <div class="caption">Result map</div>
                 </div>
             </div>

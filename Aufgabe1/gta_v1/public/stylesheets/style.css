@@ -38,3 +38,8 @@ footer {
     margin: 0.5em;
     color: white;
 }
+
+.map {
+    border: 1px solid black;
+    padding: 5px;
+}
