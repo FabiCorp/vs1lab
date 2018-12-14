@@ -48,8 +48,10 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
     var successHandler = function(geoObject) {
       latitude = getLatitude(geoObject);
       longitude = getLongitude(geoObject);
-      document.getElementById("latitude").value = latitude;
-      document.getElementById("longitude").value = longitude;
+      document.getElementById("tag-latitude").value = latitude;
+      document.getElementById("tag-longitude").value = longitude;
+      document.getElementById("discovery-latitude").value = latitude;
+      document.getElementById("discovery-longitude").value = longitude;
       var tags = [];
 
       var allListElements = $( "#result-img" ).attr("src",
