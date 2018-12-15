@@ -33,13 +33,13 @@
             <fieldset>
                 <legend>Enter a new Geo-Tag</legend>
                 <label for="tag-latitude">Latitude</label>
-                <input type="text" id="tag-latitude" placeholder="49.01379" class="d-block" required>
+                <input type="text" name="latitude" id="tag-latitude" id="tag-latitude" placeholder="49.01379" class="d-block" required>
                 <label for="tag-latitude">Longitude</label>
-                <input type="text" id="tag-longitude" placeholder="8.404435" class="d-block" required>
+                <input type="text" name="longitude" id="tag-longitude" placeholder="8.404435" class="d-block" required>
                 <label for="tag-name">Name</label>
-                <input type="text" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
+                <input type="text" name="name" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
                 <label for="tag-hashtag">Hashtag</label>
-                <input type="text" id="tag-hashtag" placeholder="#sight" class="d-block" pattern="[#].*">
+                <input type="text" name="hashtag" id="tag-hashtag" placeholder="#sight" class="d-block" pattern="[#].*">
                 <button id="tag-submit" type="submit">submit</button>
             </fieldset>
         </form>
@@ -55,11 +55,11 @@
             <form id="filter-form" action="/discovery" method="post">
                 <fieldset>
                     <legend>Filter by Searchterm</legend>
-                    <input type="search" placeholder="Castle" id="discovery-search" name="search">
-                    <input type="text" id="discovery-latitude" class="d-none">
-                    <input type="text" id="discovery-longitude" class="d-none">
-                    <button type="button" id="discovery-apply" onclick="">Apply</button>
-                    <button type="button" id="discovery-remove" onclick="">Remove</button>
+                    <input type="search" placeholder="Castle" name="name" id="discovery-search" name="search">
+                    <input type="text" name="latitude" id="discovery-latitude" class="d-none">
+                    <input type="text" name="longitude" id="discovery-longitude" class="d-none">
+                    <button type="submit" id="discovery-apply" onclick="">Apply</button>
+                    <button type="submit" id="discovery-remove" onclick="">Remove</button>
                 </fieldset>
             </form>
             <!-- ############### Aufgabe1a Form2 Ende -->

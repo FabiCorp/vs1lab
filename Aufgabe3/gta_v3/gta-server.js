@@ -36,7 +36,7 @@ app.set('view engine', 'ejs');
  * GeoTag Objekte sollen min. alle Felder des 'tag-form' Formulars aufnehmen.
  */
 
-var GeoTag = (latitude,longitude,name,hashtag) => {
+function GeoTag(latitude,longitude,name,hashtag) {
     this.latitude = latitude;
     this.longitude = longitude;
     this.name = name;
@@ -51,22 +51,36 @@ var GeoTag = (latitude,longitude,name,hashtag) => {
  * - Funktion zum hinzufügen eines Geo Tags.
  * - Funktion zum Löschen eines Geo Tags.
  */
-
-var geoArray = [];
+var geoTagArray = [];
 
 var searchRadius = (longitude, latitude, radius) => {
 
 };
 
-var seachText = (text) => {
+var seachText = (geoBody) => {
+    var searchArray = [];
 
+   geoTagArray.forEach(function(arrayElement) {
+       if (arrayElement.name.includes(geoBody.name)) {
+           searchArray.push(arrayElement);
+       }
+   });
+   console.log(searchArray);
+    return searchArray;
 };
 
-var addGeoTag = (geoTag) => {
-
+var addGeoTag = (geoBody) => {
+    var geoTag = new GeoTag(geoBody.latitude, geoBody.longitude,
+        geoBody.name, geoBody.hashtag);
+    geoTagArray.push(geoTag);
 };
 
-var removeGeoTag = (geoTag) => {
+var removeGeoTag = (geoBody) => {
+    geoTagArray.filter(function(arrayElement){
+        return geoBody.name === arrayElement.name
+    }).forEach(function(arrayElement){
+        geoTagArray.splice(geoTagArray.indexOf(arrayElement), 1);
+    });
 
 };
 
@@ -81,7 +95,7 @@ var removeGeoTag = (geoTag) => {
 
 app.get('/', function(req, res) {
     res.render('gta', {
-        taglist: []
+        taglist: geoTagArray
     });
 });
 
@@ -99,7 +113,13 @@ app.get('/', function(req, res) {
  */
 
  app.post('/tagging', function(req, res) {
-   console.log(req.body);
+    console.log(req.body.latitude);
+    addGeoTag(req.body);
+    console.log(geoTagArray);
+    res.render('gta', {
+     taglist: geoTagArray
+    });
+
  });
 
 /**
@@ -116,6 +136,9 @@ app.get('/', function(req, res) {
 
  app.post('/discovery', function(req, res) {
    console.log(req.body);
+     res.render('gta', {
+         taglist: seachText(req.body)
+     });
  });
 
 /**
