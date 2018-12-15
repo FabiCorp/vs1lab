@@ -36,7 +36,12 @@ app.set('view engine', 'ejs');
  * GeoTag Objekte sollen min. alle Felder des 'tag-form' Formulars aufnehmen.
  */
 
-
+var GeoTag = (latitude,longitude,name,hashtag) => {
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.name = name;
+    this.hashtag = hashtag;
+};
 
 /**
  * Modul für 'In-Memory'-Speicherung von GeoTags mit folgenden Komponenten:
@@ -51,19 +56,19 @@ var geoArray = [];
 
 var searchRadius = (longitude, latitude, radius) => {
 
-}
+};
 
 var seachText = (text) => {
 
-}
+};
 
 var addGeoTag = (geoTag) => {
 
-}
+};
 
 var removeGeoTag = (geoTag) => {
 
-}
+};
 
 /**
  * Route mit Pfad '/' für HTTP 'GET' Requests.

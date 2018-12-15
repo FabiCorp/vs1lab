@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GeoTagApp</title>
     <link rel='stylesheet' href='./stylesheets/style.css'/>
+    <link rel='stylesheet' href='stylesheets/flex-grid.css'/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -16,64 +17,68 @@
     <img src="./images/location.png" width="100"
          alt="an image of a map and location">
     <h1>GeoTagApp</h1>
-    <nav>
+    <nav class="nav-bar">
         <a href="#">About</a> | <a href="#">Help</a> | <a
             href="/">Home</a>
     </nav>
 </header>
 
-<main class="flex-box">
+<main class="flex-grid">
 
-    <section class="tagging col-4">
+    <section class="col-4">
         <h2>Tagging</h2>
 
         <!-- ############### Aufgabe1a Form1 Start -->
         <form id="tag-form" action="/tagging" method="post">
-            <!-- <fieldset> -->
+            <fieldset>
                 <legend>Enter a new Geo-Tag</legend>
-                <label for="latitude">Latitude</label>
-                <input type="text" name="latitude" id="latitude" class="d-block" required>
-                <label for="latitude">Longitude</label>
-                <input type="text" name="longitude" id="longitude" class="d-block" required>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="d-block" maxlength="10" required>
-                <label for="hashtag">Hashtag</label>
-                <input type="text" name="hashtag" id="hashtag" class="d-block" pattern="[#].*">
-                <input type="submit" value="Submit">
-            <!-- </fieldset> -->
+                <label for="tag-latitude">Latitude</label>
+                <input type="text" id="tag-latitude" placeholder="49.01379" class="d-block" required>
+                <label for="tag-latitude">Longitude</label>
+                <input type="text" id="tag-longitude" placeholder="8.404435" class="d-block" required>
+                <label for="tag-name">Name</label>
+                <input type="text" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
+                <label for="tag-hashtag">Hashtag</label>
+                <input type="text" id="tag-hashtag" placeholder="#sight" class="d-block" pattern="[#].*">
+                <button id="tag-submit" type="submit">submit</button>
+            </fieldset>
         </form>
         <!-- ############### Aufgabe1a Form1 Ende -->
 
     </section>
 
-    <section class="discovery col-8 flex-box">
-        <h2>Discovery</h2>
+    <section class="col-8">
+        <div class="d-block">
+            <h2>Discovery</h2>
 
-        <!-- ############### Aufgabe1a Form2 Start -->
-        <form id="filter-form" action="/discovery" method="post">
-            <fieldset>
-                <legend>Filter by Searchterm</legend>
-                <input type="search" id="search" name="search">
-                <button type="button" id="apply" onclick="">Apply</button>
-                <button type="button" id="remove" onclick="">Remove</button>
-            </fieldset>
+            <!-- ############### Aufgabe1a Form2 Start -->
+            <form id="filter-form" action="/discovery" method="post">
+                <fieldset>
+                    <legend>Filter by Searchterm</legend>
+                    <input type="search" placeholder="Castle" id="discovery-search" name="search">
+                    <input type="text" id="discovery-latitude" class="d-none">
+                    <input type="text" id="discovery-longitude" class="d-none">
+                    <button type="button" id="discovery-apply" onclick="">Apply</button>
+                    <button type="button" id="discovery-remove" onclick="">Remove</button>
+                </fieldset>
+            </form>
+            <!-- ############### Aufgabe1a Form2 Ende -->
 
-        </form>
-        <!-- ############### Aufgabe1a Form2 Ende -->
+            <div class="flex-grid">
+                <div class="col-4">
+                    <ul id="results" class="results-list">
+                      <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
+                        <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
+                      <% }); %>
+                    </ul>
+                </div>
 
-        <div class="taglist">
-            <ul id="results">
-							<% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-								<li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
-							<% }); %>
-            </ul>
+                <div class="tagmap col-8">
+                    <img class="map" id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
+                    <div class="caption">Result map</div>
+                </div>
+            </div>
         </div>
-
-        <div class="tagmap">
-            <img id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
-            <div class="caption">Result map</div>
-        </div>
-
     </section>
 
 </main>
@@ -81,12 +86,7 @@
 <footer>
     <span>2017 by LKIT</span>
 </footer>
-<!-- Load JavaScripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="./javascripts/geotagging.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="./javascripts/geotagging.js"></script>
 </body>
 </html>
-
-	<!-- TODO: HTML AUS AUFGABE2 HIERHER KOPIEREN UND DIE BEISPIEL-EINTRÄGE DER DISCOVERY-LISTE MIT DEN FOLGENDEN ZEILEN ERSETZEN -->
