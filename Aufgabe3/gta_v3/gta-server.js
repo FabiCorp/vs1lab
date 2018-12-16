@@ -52,7 +52,8 @@ function GeoTag(latitude,longitude,name,hashtag) {
  * - Funktion zum Löschen eines Geo Tags.
  */
 var geoTagArray = [];
-var radius = 1;
+var input;
+const radius = 1;
 
 var searchRadius = (geoBody) => {
     let searchArray = [];
@@ -79,7 +80,7 @@ var searchText = (geoBody) => {
 };
 
 var addGeoTag = (geoBody) => {
-    var geoTag = new GeoTag(geoBody.latitude, geoBody.longitude,
+    let geoTag = new GeoTag(geoBody.latitude, geoBody.longitude,
         geoBody.name, geoBody.hashtag);
     geoTagArray.push(geoTag);
 };
@@ -104,7 +105,8 @@ var removeGeoTag = (geoBody) => {
 
 app.get('/', function(req, res) {
     res.render('gta', {
-        taglist: geoTagArray
+        taglist: geoTagArray,
+        input: input
     });
 });
 
@@ -122,6 +124,7 @@ app.get('/', function(req, res) {
  */
 
  app.post('/tagging', function(req, res) {
+     console.log("TAGGING");
     addGeoTag(req.body);
     res.render('gta', {
      taglist: geoTagArray

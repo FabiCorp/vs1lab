@@ -33,9 +33,9 @@
             <fieldset>
                 <legend>Enter a new Geo-Tag</legend>
                 <label for="tag-latitude">Latitude</label>
-                <input type="text" name="latitude" id="tag-latitude" id="tag-latitude" placeholder="49.01379" class="d-block" required>
+                <input type="text" name="latitude" id="tag-latitude" placeholder="49.01379" value="<% if (input !== undefined) { %> <%= input.latitude%> <% } %>" class="d-block" required>
                 <label for="tag-latitude">Longitude</label>
-                <input type="text" name="longitude" id="tag-longitude" placeholder="8.404435" class="d-block" required>
+                <input type="text" name="longitude" id="tag-longitude" placeholder="8.404435" value="<% if (input !== undefined) { %> <%= input.longitude%> <% } %>" class="d-block" required>
                 <label for="tag-name">Name</label>
                 <input type="text" name="name" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
                 <label for="tag-hashtag">Hashtag</label>
@@ -56,8 +56,8 @@
                 <fieldset>
                     <legend>Filter by Searchterm</legend>
                     <input type="search" placeholder="Castle" name="name" id="discovery-search" name="search">
-                    <input type="text" name="latitude" id="discovery-latitude" class="d-none">
-                    <input type="text" name="longitude" id="discovery-longitude" class="d-none">
+                    <input type="text" name="latitude" id="discovery-latitude" value="<% if (input !== undefined) { %> <%= input.latitude%> <% } %>" class="d-none">
+                    <input type="text" name="longitude" id="discovery-longitude" value="<% if (input !== undefined) { %> <%= input.longitude%> <% } %>"  class="d-none">
                     <button type="submit" name="apply" id="discovery-apply" onclick="">Apply</button>
                     <button type="submit" name="remove" id="discovery-remove" onclick="">Remove</button>
                 </fieldset>
