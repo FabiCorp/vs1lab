@@ -52,19 +52,29 @@ function GeoTag(latitude,longitude,name,hashtag) {
  * - Funktion zum Löschen eines Geo Tags.
  */
 var geoTagArray = [];
+var radius = 1;
 
-var searchRadius = (longitude, latitude, radius) => {
-
+var searchRadius = (geoBody) => {
+    let searchArray = [];
+    geoTagArray.forEach(function(arrayElement) {
+        let elementDifference = arrayElement.latitude - arrayElement.longitude;
+        let geoDifference = geoBody.latitude - geoBody.longitude;
+        if (elementDifference - geoDifference <= radius) {
+            searchArray.push(arrayElement);
+        }
+    });
+    console.log(searchArray);
+    return searchArray;
 };
 
 var searchText = (geoBody) => {
-    var searchArray = [];
-   geoTagArray.forEach(function(arrayElement) {
+    let searchArray = [];
+    geoTagArray.forEach(function(arrayElement) {
        if (arrayElement.name.includes(geoBody.name)) {
            searchArray.push(arrayElement);
        }
-   });
-   console.log(searchArray);
+    });
+    console.log(searchArray);
     return searchArray;
 };
 
@@ -80,7 +90,6 @@ var removeGeoTag = (geoBody) => {
     }).forEach(function(arrayElement){
         geoTagArray.splice(geoTagArray.indexOf(arrayElement), 1);
     });
-    console.log(geoTagArray);
 };
 
 /**
@@ -146,6 +155,7 @@ app.get('/', function(req, res) {
             taglist: searchText(req.body)
         });
     }
+
  });
 
 /**
