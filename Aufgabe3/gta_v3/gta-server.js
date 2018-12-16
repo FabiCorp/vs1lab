@@ -57,9 +57,8 @@ var searchRadius = (longitude, latitude, radius) => {
 
 };
 
-var seachText = (geoBody) => {
+var searchText = (geoBody) => {
     var searchArray = [];
-
    geoTagArray.forEach(function(arrayElement) {
        if (arrayElement.name.includes(geoBody.name)) {
            searchArray.push(arrayElement);
@@ -81,7 +80,7 @@ var removeGeoTag = (geoBody) => {
     }).forEach(function(arrayElement){
         geoTagArray.splice(geoTagArray.indexOf(arrayElement), 1);
     });
-
+    console.log(geoTagArray);
 };
 
 /**
@@ -92,6 +91,7 @@ var removeGeoTag = (geoBody) => {
  *
  * Als Response wird das ejs-Template ohne Geo Tag Objekte gerendert.
  */
+
 
 app.get('/', function(req, res) {
     res.render('gta', {
@@ -113,9 +113,7 @@ app.get('/', function(req, res) {
  */
 
  app.post('/tagging', function(req, res) {
-    console.log(req.body.latitude);
     addGeoTag(req.body);
-    console.log(geoTagArray);
     res.render('gta', {
      taglist: geoTagArray
     });
@@ -135,10 +133,19 @@ app.get('/', function(req, res) {
  */
 
  app.post('/discovery', function(req, res) {
-   console.log(req.body);
-     res.render('gta', {
-         taglist: seachText(req.body)
-     });
+
+    if(req.body.remove !== undefined){
+        console.log("REMOVE");
+        removeGeoTag(req.body);
+        res.render('gta', {
+            taglist: geoTagArray
+        });
+    } else if(req.body.apply !== undefined){
+        console.log("APPLY");
+        res.render('gta', {
+            taglist: searchText(req.body)
+        });
+    }
  });
 
 /**
