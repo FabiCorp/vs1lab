@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTagApp</title>
+    <link rel='stylesheet' href='./stylesheets/style.css'/>
+    <link rel='stylesheet' href='stylesheets/flex-grid.css'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/ico" href="./images/map.ico">
+</head>
+
+<body>
+
+<header>
+    <img src="./images/location.png" width="100"
+         alt="an image of a map and location">
+    <h1>GeoTagApp</h1>
+    <nav class="nav-bar">
+        <a href="#">About</a> | <a href="#">Help</a> | <a
+            href="/">Home</a>
+    </nav>
+</header>
+
+<main class="flex-grid">
+
+    <section class="col-4">
+        <h2>Tagging</h2>
+
+        <!-- ############### Aufgabe1a Form1 Start -->
+        <form id="tag-form" action="/tagging" method="post">
+            <fieldset>
+                <legend>Enter a new Geo-Tag</legend>
+                <label for="tag-latitude">Latitude</label>
+                <input type="text" name="latitude" id="tag-latitude" placeholder="49.01379" value="<% if (input !== undefined) { %> <%=input.latitude%> <% } %>" class="d-block" required>
+                <label for="tag-latitude">Longitude</label>
+                <input type="text" name="longitude" id="tag-longitude" placeholder="8.404435" value="<% if (input !== undefined) { %> <%=input.longitude%> <% } %>" class="d-block" required>
+                <label for="tag-name">Name</label>
+                <input type="text" name="name" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
+                <label for="tag-hashtag">Hashtag</label>
+                <input type="text" name="hashtag" id="tag-hashtag" placeholder="#sight" class="d-block" pattern="[#].*">
+                <button id="tag-submit" type="button" onclick="submitTagging()">submit</button>
+            </fieldset>
+        </form>
+        <!-- ############### Aufgabe1a Form1 Ende -->
+
+    </section>
+
+    <section class="col-8">
+        <div class="d-block">
+            <h2>Discovery</h2>
+
+            <!-- ############### Aufgabe1a Form2 Start -->
+            <form id="filter-form" action="/discovery" method="post">
+                <fieldset>
+                    <legend>Filter by Searchterm</legend>
+                    <input type="search" placeholder="Castle" name="name" id="discovery-search" name="search">
+                    <input type="text" name="latitude" id="discovery-latitude" value="<% if (input !== undefined) { %> <%=input.latitude%> <% } %>" class="d-none">
+                    <input type="text" name="longitude" id="discovery-longitude" value="<% if (input !== undefined) { %> <%=input.longitude%> <% } %>"  class="d-none">
+                    <button type="button" name="apply" id="discovery-apply" onclick="submitApply()">Apply</button>
+                    <button type="button" name="remove" id="discovery-remove" onclick="submitRemove()">Remove</button>
+                </fieldset>
+            </form>
+            <!-- ############### Aufgabe1a Form2 Ende -->
+
+            <div class="flex-grid">
+                <div class="col-4">
+                    <ul id="results" class="results-list">
+                      <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
+                        <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
+                      <% }); %>
+                    </ul>
+                </div>
+
+                <div class="tagmap col-8">
+                    <img class="map" id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
+                    <div class="caption">Result map</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <span>2017 by LKIT</span>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="./javascripts/geotagging.js"></script>
+</body>
+</html>
