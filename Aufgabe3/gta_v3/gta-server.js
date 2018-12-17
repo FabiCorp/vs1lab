@@ -85,6 +85,11 @@ var addGeoTag = (geoBody) => {
     geoTagArray.push(geoTag);
 };
 
+var setInput = (geoBody) => {
+    input = new GeoTag(geoBody.latitude, geoBody.longitude,
+        geoBody.name, geoBody.hashtag);
+};
+
 var removeGeoTag = (geoBody) => {
     geoTagArray.filter(function(arrayElement){
         return geoBody.name === arrayElement.name
@@ -125,11 +130,15 @@ app.get('/', function(req, res) {
 
  app.post('/tagging', function(req, res) {
      console.log("TAGGING");
+     if(input === undefined) {
+         setInput(req.body);
+         console.log(input);
+     }
     addGeoTag(req.body);
-    res.render('gta', {
-     taglist: geoTagArray
+     res.render('gta', {
+        taglist: geoTagArray,
+        input: input
     });
-
  });
 
 /**
@@ -145,15 +154,16 @@ app.get('/', function(req, res) {
  */
 
  app.post('/discovery', function(req, res) {
+     console.log(req.body);
     if(req.body.remove !== undefined){
         console.log("REMOVE");
         removeGeoTag(req.body);
         res.render('gta', {
-            taglist: geoTagArray
+            taglist: geoTagArray,
+            input: input
         });
     } else if(req.body.apply !== undefined){
         console.log("APPLY");
-        console.log(req.body);
         let renderArray;
         if(req.body.name === ''){
             console.log("RADIUS");
@@ -163,11 +173,14 @@ app.get('/', function(req, res) {
             renderArray = searchText(req.body);
         }
         res.render('gta', {
-            taglist: renderArray
+            taglist: renderArray,
+            input: input
         });
     }
 
  });
+
+
 
 /**
  * Setze Port und speichere in Express.
