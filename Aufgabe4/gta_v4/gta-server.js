@@ -58,6 +58,7 @@ const radius = 1;
 
 var searchRadius = (geoBody) => {
     let searchArray = [];
+    console.log(geoBody.latitude);
     geoTagArray.forEach(function(arrayElement) {
         let latDifference = Math.abs(arrayElement.latitude - geoBody.latitude) ;
         let longDifference = Math.abs(arrayElement.longitude - geoBody.longitude);
@@ -142,7 +143,6 @@ app.get('/', function(req, res) {
         taglist: geoTagArray,
         input: input
     });
-     console.log(geoTagArray);
  });
 
 /**
@@ -158,15 +158,14 @@ app.get('/', function(req, res) {
  */
 
  app.get('/discovery', function(req, res) {
-     console.log(req.query);
-    if(req.query.remove !== undefined){
+    if(req.query.remove === "true"){
         console.log("REMOVE");
         removeGeoTag(req.query);
         res.render('gta', {
             taglist: geoTagArray,
             input: input
         });
-    } else if(req.query.apply !== undefined){
+    } else if(req.query.apply === "true"){
         console.log("APPLY");
         let renderArray;
         if(req.query.name === ''){

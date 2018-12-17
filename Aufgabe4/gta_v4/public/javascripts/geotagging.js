@@ -175,26 +175,30 @@ function submitTagging() {
     xhttp.open("POST","/tagging", true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(params));
+    $("#discovery-div").load(window.location.href+" #discovery-div");
+    return false;
 }
 
 function submitApply() {
     console.log("APPLY!");
     var xhttp = new XMLHttpRequest();
     var params = "latitude=" + $('#discovery-latitude').val()+
-        "&longitude"+$('#discovery-longitude').val()+
+        "&longitude="+$('#discovery-longitude').val()+
         "&name="+$('#discovery-search').val()+
-        "&apply="+"";
+        "&apply="+"true";
     xhttp.open("GET","/discovery?"+params, true);
     xhttp.send(null);
+    $("#discovery-div").load(window.location.href+"discovery?"+ params +" #discovery-div");
 }
 
 function submitRemove() {
     console.log("REMOVE!");
     var xhttp = new XMLHttpRequest();
     var params = "latitude=" + $('#discovery-latitude').val()+
-        "&longitude"+$('#discovery-longitude').val()+
+        "&longitude="+$('#discovery-longitude').val()+
         "&name="+$('#discovery-search').val()+
-        "&remove="+"";
+        "&remove="+"true";
     xhttp.open("GET","/discovery?"+params, true);
     xhttp.send(null);
+    $("#discovery-div").load(window.location.href+" #discovery-div");
 }
