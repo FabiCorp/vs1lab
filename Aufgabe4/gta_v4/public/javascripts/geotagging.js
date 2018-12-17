@@ -172,15 +172,29 @@ function submitTagging() {
         longitude:$('#tag-longitude').val(),
         name:$('#tag-name').val(),
         hashtag:$('#tag-hashtag').val()};
-    xhttp.open("POST","/tagging",);
+    xhttp.open("POST","/tagging", true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(params));
 }
 
 function submitApply() {
     console.log("APPLY!");
+    var xhttp = new XMLHttpRequest();
+    var params = "latitude=" + $('#discovery-latitude').val()+
+        "&longitude"+$('#discovery-longitude').val()+
+        "&name="+$('#discovery-search').val()+
+        "&apply="+"";
+    xhttp.open("GET","/discovery?"+params, true);
+    xhttp.send(null);
 }
 
 function submitRemove() {
     console.log("REMOVE!");
+    var xhttp = new XMLHttpRequest();
+    var params = "latitude=" + $('#discovery-latitude').val()+
+        "&longitude"+$('#discovery-longitude').val()+
+        "&name="+$('#discovery-search').val()+
+        "&remove="+"";
+    xhttp.open("GET","/discovery?"+params, true);
+    xhttp.send(null);
 }

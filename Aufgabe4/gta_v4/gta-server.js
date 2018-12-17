@@ -157,24 +157,24 @@ app.get('/', function(req, res) {
  * Falls 'term' vorhanden ist, wird nach Suchwort gefiltert.
  */
 
- app.post('/discovery', function(req, res) {
-     console.log(req.body);
-    if(req.body.remove !== undefined){
+ app.get('/discovery', function(req, res) {
+     console.log(req.query);
+    if(req.query.remove !== undefined){
         console.log("REMOVE");
-        removeGeoTag(req.body);
+        removeGeoTag(req.query);
         res.render('gta', {
             taglist: geoTagArray,
             input: input
         });
-    } else if(req.body.apply !== undefined){
+    } else if(req.query.apply !== undefined){
         console.log("APPLY");
         let renderArray;
-        if(req.body.name === ''){
+        if(req.query.name === ''){
             console.log("RADIUS");
-            renderArray = searchRadius(req.body)
+            renderArray = searchRadius(req.query)
         } else {
             console.log("TEXT");
-            renderArray = searchText(req.body);
+            renderArray = searchText(req.query);
         }
         res.render('gta', {
             taglist: renderArray,
