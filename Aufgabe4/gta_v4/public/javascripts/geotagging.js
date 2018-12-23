@@ -46,17 +46,24 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
     };
 
     var successHandler = function(geoObject) {
-      latitude = getLatitude(geoObject);
-      longitude = getLongitude(geoObject);
-      $('#tag-latitude').attr("value", latitude);
-      $('#tag-longitude').attr("value", longitude);
-      $('#discovery-latitude').attr("value", latitude);
-      $('#discovery-longitude').attr("value", longitude);
-      var tags = [];
+        var tagLatitude = $('#tag-latitude');
+        var tagLongitude = $('#tag-longitude');
+        if (tagLatitude.val() === '' && tagLongitude.val() === '') {
+            latitude = getLatitude(geoObject);
+            longitude = getLongitude(geoObject);
+        } else {
+            latitude = tagLatitude.val();
+            longitude = tagLongitude.val();
+        }
+        tagLatitude.attr("value", latitude);
+        tagLongitude.attr("value", longitude);
+        $('#discovery-latitude').attr("value", latitude);
+        $('#discovery-longitude').attr("value", longitude);
+        var tags = [];
 
-      var allListElements = $( "#result-img" ).attr("src",
-      getLocationMapSrc(latitude, longitude, tags, 15));
-      console.log(allListElements);
+        var allListElements = $( "#result-img" ).attr("src",
+        getLocationMapSrc(latitude, longitude, tags, 15));
+        console.log(allListElements);
     };
 
     /**
@@ -141,14 +148,7 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
 
         updateLocation: function() {
             // TODO Hier Inhalt der Funktion "update" ergänzen
-
-            if (document.getElementById("tag-latitude").value === '' &&
-                document.getElementById("tag-longitude").value === '') {
-                tryLocate(successHandler, errorHandler);
-            } else {
-                console.log("ALREADY EXISTS HAHA");
-            }
-
+            tryLocate(successHandler, errorHandler);
         }
 
     }; // ... Ende öffentlicher Teil
@@ -174,7 +174,7 @@ function submitTagging() {
         hashtag:$('#tag-hashtag').val()};
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#discovery-div").load(window.location.href+" #discovery-div");
+            $("#tagging-list").load(window.location.href+" #tagging-list");
         }
     };
     xhttp.open("POST","/tagging", true);
@@ -191,7 +191,7 @@ function submitApply() {
         "&apply="+"true";
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#discovery-div").load(window.location.href+" #discovery-div");
+            $("#discovery-div").load(window.location.href+" #results-list");
         }
     };
     xhttp.open("GET","/discovery?"+params, true);
@@ -207,7 +207,7 @@ function submitRemove() {
         "&remove="+"true";
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#discovery-div").load(window.location.href+" #discovery-div");
+            $("#discovery-div").load(window.location.href+" #results-list");
         }
     };
     xhttp.open("GET","/discovery?"+params, true);

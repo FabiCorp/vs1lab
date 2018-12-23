@@ -65,7 +65,7 @@
             <!-- ############### Aufgabe1a Form2 Ende -->
 
             <div class="flex-grid">
-                <div class="col-4">
+                <div class="col-4" id="tagging-list">
                     <ul id="results" class="results-list">
                       <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
                         <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
