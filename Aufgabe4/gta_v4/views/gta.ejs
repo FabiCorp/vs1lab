@@ -33,9 +33,11 @@
             <fieldset>
                 <legend>Enter a new Geo-Tag</legend>
                 <label for="tag-latitude">Latitude</label>
-                <input type="text" name="latitude" id="tag-latitude" placeholder="49.01379" value="<% if (input !== undefined) { %> <%-input.latitude%> <% } %>" class="d-block" required>
+                <input type="text" name="latitude" id="tag-latitude" placeholder="49.01379"
+                       value="<%if (input !== undefined) { %> <%-input.latitude%> <% } %>" class="d-block" required>
                 <label for="tag-latitude">Longitude</label>
-                <input type="text" name="longitude" id="tag-longitude" placeholder="8.404435" value="<% if (input !== undefined) { %> <%-input.longitude%> <% } %>" class="d-block" required>
+                <input type="text" name="longitude" id="tag-longitude" placeholder="8.404435"
+                       value="<% if (input !== undefined) { %> <%-input.longitude%> <% } %>" class="d-block" required>
                 <label for="tag-name">Name</label>
                 <input type="text" name="name" id="tag-name" placeholder="Castle" class="d-block" maxlength="10" required>
                 <label for="tag-hashtag">Hashtag</label>
@@ -56,16 +58,18 @@
                 <fieldset>
                     <legend>Filter by Searchterm</legend>
                     <input type="search" placeholder="Castle" name="search" id="discovery-search" >
-                    <input type="text" name="latitude" id="discovery-latitude" value="<% if (input !== undefined) { %> <%-input.latitude%> <% } %>" class="d-none">
-                    <input type="text" name="longitude" id="discovery-longitude" value="<% if (input !== undefined) { %> <%-input.longitude%> <% } %>"  class="d-none">
+                    <input type="text" name="latitude" id="discovery-latitude"
+                           value="<% if (input !== undefined) { %> <%-input.latitude%> <% } %>" class="d-none">
+                    <input type="text" name="longitude" id="discovery-longitude"
+                           value="<% if (input !== undefined) { %> <%-input.longitude%> <% } %>"  class="d-none">
                     <button type="button" name="apply" id="discovery-apply" onclick="submitApply()">Apply</button>
                     <button type="button" name="remove" id="discovery-remove" onclick="submitRemove()">Remove</button>
                 </fieldset>
             </form>
             <!-- ############### Aufgabe1a Form2 Ende -->
 
-            <div class="flex-grid">
-                <div class="col-4" id="tagging-list">
+            <div class="flex-grid" class="discovery-div">
+                <div class="col-4"  id="tagging-list">
                     <ul id="results" class="results-list">
                       <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
                         <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
