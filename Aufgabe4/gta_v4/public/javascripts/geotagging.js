@@ -191,7 +191,9 @@ function submitApply() {
         "&apply="+"true";
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#tagging-list").load(window.location.href+" #tagging-list>*");
+            var result = $('<div />').append(xhttp.response).find('#tagging-list').html();
+            console.log(result);
+            $("#tagging-list").html(result);
         }
     };
     xhttp.open("GET","/discovery?"+params, true);
