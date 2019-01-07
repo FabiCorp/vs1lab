@@ -174,7 +174,7 @@ function submitTagging() {
         hashtag:$('#tag-hashtag').val()};
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#discovery-div").load(window.location.href+" #discovery-div");
+            $("#tagging-list").load(window.location.href+" #tagging-list>*");
         }
     };
     xhttp.open("POST","/tagging", true);
@@ -191,7 +191,7 @@ function submitApply() {
         "&apply="+"true";
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#discovery-div").load(window.location.href+" #discovery-div");
+            $("#tagging-list").load(window.location.href+" #tagging-list>*");
         }
     };
     xhttp.open("GET","/discovery?"+params, true);
@@ -207,7 +207,7 @@ function submitRemove() {
         "&remove="+"true";
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState === 4 && xhttp.status === 200) {
-            $("#discovery-div").load(window.location.href+" #discovery-div");
+            $("#tagging-list").load(window.location.href+" #tagging-list>*");
         }
     };
     xhttp.open("GET","/discovery?"+params, true);

@@ -167,16 +167,16 @@ app.get('/', function(req, res) {
         });
     } else if(req.query.apply === "true"){
         console.log("APPLY");
-        let renderArray;
+        let searchArray;
         if(req.query.name === ''){
             console.log("RADIUS");
-            renderArray = searchRadius(req.query)
+            searchArray = searchRadius(req.query)
         } else {
             console.log("TEXT");
-            renderArray = searchText(req.query);
+            searchArray = searchText(req.query);
         }
         res.render('gta', {
-            taglist: renderArray,
+            taglist: searchArray,
             input: input
         });
     }
