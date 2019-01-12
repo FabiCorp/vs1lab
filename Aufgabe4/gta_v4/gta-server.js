@@ -37,12 +37,16 @@ app.set('view engine', 'ejs');
  * GeoTag Objekte sollen min. alle Felder des 'tag-form' Formulars aufnehmen.
  */
 
+// id initialization
+var id = 1;
+
 function GeoTag(latitude,longitude,name,hashtag) {
+    this.id = id++;
     this.latitude = latitude;
     this.longitude = longitude;
     this.name = name;
     this.hashtag = hashtag;
-};
+}
 
 /**
  * Modul für 'In-Memory'-Speicherung von GeoTags mit folgenden Komponenten:
@@ -58,7 +62,6 @@ const radius = 1;
 
 var searchRadius = (geoBody) => {
     let searchArray = [];
-    console.log(geoBody.latitude);
     geoTagArray.forEach(function(arrayElement) {
         let latDifference = Math.abs(arrayElement.latitude - geoBody.latitude) ;
         let longDifference = Math.abs(arrayElement.longitude - geoBody.longitude);
@@ -86,6 +89,7 @@ var addGeoTag = (geoBody) => {
     let geoTag = new GeoTag(geoBody.latitude, geoBody.longitude,
         geoBody.name, geoBody.hashtag);
     geoTagArray.push(geoTag);
+    return geoTag.id;
 };
 
 var setInput = (geoBody) => {
@@ -99,6 +103,26 @@ var removeGeoTag = (geoBody) => {
     }).forEach(function(arrayElement){
         geoTagArray.splice(geoTagArray.indexOf(arrayElement), 1);
     });
+};
+
+var findGeoTagById = (geoTagId, idCallback) => {
+    let elementWithId;
+    for (let counter = 0; counter < geoTagArray.length; counter++) {
+        if (geoTagArray[counter].id == geoTagId) {
+            console.log("HELLO");
+            elementWithId = geoTagArray[counter];
+        }
+    }
+    idCallback(elementWithId);
+    // geoTagArray.forEach(idCallback,function(arrayElement) {
+    //     if (arrayElement.id === geoTagId) {
+    //        // elementWithId = 123;
+    //     }
+    //     itemsProcessed++;
+    //     if(itemsProcessed === geoTagArray.length) {
+    //         idCallback("123");
+    //     }
+    // });
 };
 
 /**
@@ -132,11 +156,9 @@ app.get('/', function(req, res) {
  */
 
  app.post('/tagging', function(req, res) {
-     console.log(req.body);
      console.log("TAGGING");
      if(input === undefined) {
          setInput(req.body);
-         //console.log(input);
      }
     addGeoTag(req.body);
      res.render('gta', {
@@ -180,10 +202,69 @@ app.get('/', function(req, res) {
             input: input
         });
     }
-
  });
 
+ /**
+  * Route mit Pfad '/geotags' für HTTP  Requests.
+  * (http://expressjs.com/de/4x/api.html)
+  * */
 
+app.get('/geotags', function(req, res) {
+    console.log("GEOTAGS");
+    if (req.query.search === "radius") {
+        res.send(searchRadius(req.query))
+    } else if (req.query.search === "text") {
+        res.send(searchText(req.query));
+    }
+});
+
+app.post('/geotags', function(req, res) {
+    let id = addGeoTag(req.body);
+    res.statusCode = 201;
+    res.header('Location', req.url + "/" + id);
+    res.end();
+});
+
+app.get('/geotags/:id', function(req, res) {
+    console.log("HEY");
+    findGeoTagById(req.params.id, function (elementWithId) {
+        console.log(elementWithId);
+        if (elementWithId !== undefined) {
+            res.send(elementWithId);
+        } else {
+            res.statusCode = 404;
+            res.send("ID NOT FOUND");
+        }
+    });
+});
+
+app.put('/geotags/:id', function(req, res) {
+    findGeoTagById(req.params.id, function (elementWithId) {
+        if (elementWithId !== undefined) {
+            elementWithId.longitude = req.body.longitude;
+            elementWithId.latitude = req.body.latitude;
+            elementWithId.name = req.body.name;
+            elementWithId.hashtag = req.body.hashtag;
+            res.send(elementWithId);
+        } else {
+            res.statusCode = 404;
+            res.send("ID NOT FOUND");
+        }
+    });
+});
+
+app.delete('/geotags/:id', function(req, res) {
+    findGeoTagById(req.params.id, function (elementWithId) {
+        if (elementWithId !== undefined) {
+            removeGeoTag(elementWithId);
+            res.statusCode = 204;
+            res.end();
+        } else {
+            res.statusCode = 404;
+            res.send("ID NOT FOUND");
+        }
+    });
+});
 
 /**
  * Setze Port und speichere in Express.

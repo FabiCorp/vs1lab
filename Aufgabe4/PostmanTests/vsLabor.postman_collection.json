@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "1ef0e8b8-c9df-4f0a-9b89-a4115f9e1529",
+		"name": "vsLabor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get GeoTags (Radius)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/geotags?search=radius&latitude=49.0108256&longitude=8.4050044  ",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"geotags"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "radius"
+						},
+						{
+							"key": "latitude",
+							"value": "49.0108256"
+						},
+						{
+							"key": "longitude",
+							"value": "8.4050044  "
+						}
+					]
+				},
+				"description": "Get geotags from server with radius method"
+			},
+			"response": []
+		},
+		{
+			"name": "Get GeoTags (Text)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/geotags?search=text&name=Fabi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"geotags"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "text"
+						},
+						{
+							"key": "name",
+							"value": "Fabi"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create GeoTag",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"latitude\": \"49.0108256\",\n\t\"longitude\": \"8.4050044\",\n\t\"name\": \"Fabi\",\n\t\"hashtag\": \"#lol\" \n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/geotags",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"geotags"
+					]
+				},
+				"description": "Create GeoTag by POST-Request with JSON-content"
+			},
+			"response": []
+		},
+		{
+			"name": "Search GeoTags with ID 1 (via GET)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/geotags/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"geotags",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change GeoTag with ID 1 (via PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n\t\"latitude\": \"100\",\n\t\"longitude\": \"50\",\n\t\"name\": \"PUT\",\n\t\"hashtag\": \"#put\" \n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/geotags/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"geotags",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete GeoTag with ID 1 (via DELETE)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/geotags/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"geotags",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
