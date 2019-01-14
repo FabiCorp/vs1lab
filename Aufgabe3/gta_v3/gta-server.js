@@ -59,9 +59,10 @@ const radius = 1;
 var searchRadius = (geoBody) => {
     let searchArray = [];
     geoTagArray.forEach(function(arrayElement) {
-        let latDifference = Math.abs(arrayElement.latitude - geoBody.latitude) ;
-        let longDifference = Math.abs(arrayElement.longitude - geoBody.longitude);
-        if ((latDifference + longDifference) <= radius) {
+        let latDifference = Math.pow(geoBody.latitude + arrayElement.latitude,2);
+        let longDifference = Math.pow(arrayElement.longitude - geoBody.longitude,2);
+        let distance = Math.pow(latDifference + longDifference, 0.5);
+        if (distance <= radius) {
             searchArray.push(arrayElement);
         }
     });
