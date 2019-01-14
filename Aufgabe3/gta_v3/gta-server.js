@@ -55,6 +55,7 @@ var geoTagArray = [];
 var input;
 const radius = 1;
 
+//TODO WUrzEL
 var searchRadius = (geoBody) => {
     let searchArray = [];
     geoTagArray.forEach(function(arrayElement) {
