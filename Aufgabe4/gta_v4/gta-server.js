@@ -257,7 +257,7 @@ app.delete('/geotags/:id', function(req, res) {
     findGeoTagById(req.params.id, function (elementWithId) {
         if (elementWithId !== undefined) {
             removeGeoTag(elementWithId);
-            res.statusCode = 204;
+            res.statusCode = 202;
             res.end();
         } else {
             res.statusCode = 404;
