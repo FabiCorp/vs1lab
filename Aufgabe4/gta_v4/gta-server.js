@@ -76,7 +76,8 @@ var searchRadius = (geoBody) => {
 var searchText = (geoBody) => {
     let searchArray = [];
     geoTagArray.forEach(function(arrayElement) {
-       if (arrayElement.name.includes(geoBody.name)) {
+        var lowerArrayElement = arrayElement.name.toLowerCase();
+       if (lowerArrayElement.includes(geoBody.name.toLowerCase())) {
            searchArray.push(arrayElement);
        }
     });
