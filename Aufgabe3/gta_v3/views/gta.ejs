@@ -55,7 +55,7 @@
             <form id="filter-form" action="/discovery" method="post">
                 <fieldset>
                     <legend>Filter by Searchterm</legend>
-                    <input type="search" placeholder="Castle" name="name" id="discovery-search" name="search">
+                    <input type="search" placeholder="Castle" name="name" id="discovery-search" >
                     <input type="text" name="latitude" id="discovery-latitude" value="<% if (input !== undefined) { %> <%=input.latitude%> <% } %>" class="d-none">
                     <input type="text" name="longitude" id="discovery-longitude" value="<% if (input !== undefined) { %> <%=input.longitude%> <% } %>"  class="d-none">
                     <button type="submit" name="apply" id="discovery-apply" onclick="">Apply</button>
